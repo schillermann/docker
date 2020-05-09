@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>docker-compose example</title>
+    </head>
+    <body>
+        <h1>Proxy docker container works!</h1>
+        <p>This is the default web page for nginx server.</p>
+        <p>Create docker-compose.yml file in your project folder with the following content, to generate containers.</p>
+        <pre><code>
+version: '2.0'
+services:
+  proxy:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./:/app
+    networks:
+      - bridge
+  app:
+    image: php7:latest
+    volumes:
+      - ./public:/app/public
+    networks:
+      - bridge
+networks:
+  bridge:
+    driver: bridge
+        </code></pre>
+    </body>
+</html>
