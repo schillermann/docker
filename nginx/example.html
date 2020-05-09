@@ -16,13 +16,13 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./:/app
+      - ./public:/app/public
     networks:
       - bridge
   app:
     image: php7:latest
     volumes:
-      - ./public:/app/public
+      - ./:/app
     networks:
       - bridge
 networks:
