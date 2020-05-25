@@ -9,7 +9,7 @@ RUN echo "root:docker" | chpasswd \
 
 WORKDIR /home/vim
 USER vim
-COPY init.vim .config/nvim/init.vim
+COPY --chown=vim:vim init.vim .config/nvim/init.vim
 RUN wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -P $HOME/.local/share/nvim/site/autoload/
 
 CMD tail -f /dev/null

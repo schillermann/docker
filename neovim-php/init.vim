@@ -3,6 +3,7 @@ function! DoRemote(arg)
 endfunction
 call plug#begin('~/.vim/plugged')
   Plug 'https://github.com/preservim/nerdtree.git'
+  Plug 'https://github.com/shawncplus/phpcomplete.vim.git'
 call plug#end()
 
 set number
@@ -12,3 +13,6 @@ set shiftwidth=2    " number of spaces to use for autoindent
 set expandtab       " tabs are space
 set autoindent
 set copyindent      " copy indent from the previous line
+
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+set completeopt=longest,menuone
