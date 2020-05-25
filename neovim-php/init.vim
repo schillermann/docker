@@ -1,9 +1,17 @@
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
+
 call plug#begin('~/.vim/plugged')
-  Plug 'https://github.com/preservim/nerdtree.git'
-  Plug 'https://github.com/shawncplus/phpcomplete.vim.git'
+  Plug 'preservim/nerdtree'
+
+  " Include Phpactor
+  Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+
+  " Require ncm2 and this plugin
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
+  Plug 'phpactor/ncm2-phpactor'
 call plug#end()
 
 set number
@@ -15,4 +23,9 @@ set autoindent
 set copyindent      " copy indent from the previous line
 
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-set completeopt=longest,menuone
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect

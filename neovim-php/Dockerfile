@@ -2,7 +2,13 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-  && apt-get install -y git neovim wget
+  && apt-get install -y \
+  composer \
+  git \
+  neovim \
+  php-curl \
+  php-xml \
+  wget
 
 RUN echo "root:docker" | chpasswd \
   && useradd -ms /bin/bash vim
