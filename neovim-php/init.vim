@@ -3,7 +3,15 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin('~/.vim/plugged')
-  Plug 'preservim/nerdtree'
+  Plug 'itchyny/lightline.vim'
+  Plug 'ludovicchabant/vim-gutentags' " Managed ctags
+  Plug 'stephpy/vim-php-cs-fixer' " Coding Standards Fixer PSR-1 and PSR-2
+  Plug 'joonty/vim-phpqa' " PHP QA Tools PHP Code Sniffer and PHP Mess Detector
+  Plug 'alvan/vim-php-manual' " PHP Manuel
+  Plug 'majutsushi/tagbar'
+  Plug 'joonty/vdebug'
+  Plug 'Rican7/php-doc-modded' " PHP Documentor
+  Plug 'tpope/vim-fugitive' " Git Merge Tool
 
   " Include Phpactor
   Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
@@ -23,6 +31,7 @@ set autoindent
 set copyindent      " copy indent from the previous line
 
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd BufWritePost *.php silent! call PhpCsFixerFixFile() " Fix on save PSR-1/PSR-2
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
